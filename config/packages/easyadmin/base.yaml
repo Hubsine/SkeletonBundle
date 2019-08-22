@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Site:
+            class: App\Entity\Site
+            disabled_actions: []
+            list:
+                fields: 
+                    - name
+                    - slogan
+                    - descrip
