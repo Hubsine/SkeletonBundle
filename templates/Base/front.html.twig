@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block body_tag_class %}front{% endblock body_tag_class %}
+
+{% block header_content %}
+    Header content
+{% endblock header_content %}
+
+{% block content_tag_class %}container{% endblock content_tag_class %}
+
+{% block container_content %}
+
+
+    {% block breadcrumb %}
+        <div id="breadcrumb">
+            <div class="container">
+                {% block breadcrumb_menu %}
+                    Breadcrumb
+                {% endblock breadcrumb_menu %}
+            </div>
+        </div>
+    {% endblock breadcrumb %}
+
+    {% block page_title %}
+        <div id="pageTitle" class="bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {% block content_title_tag_start %}<h1 class="h2">{% endblock content_title_tag_start %}
+                            {% block content_title %}
+                                Titre de la page
+                            {% endblock content_title %}
+                            {% block content_title_tag_end %}</h1>{% endblock content_title_tag_end %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock page_title %}
+
+    <div id="content">
+        {% block content %}Front content{% endblock content %}
+    </div>
+        
+{% endblock container_content %}
+
+{% block footer_content %}
+    Footer content 
+{% endblock footer_content %}

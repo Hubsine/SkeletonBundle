@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        {% block stylesheets %}
+            {#{ encore_entry_link_tags('app') }#}
+            <link rel="stylesheet" href="/build/app.css">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {### BODY BLOCK###}
+        {% block body %}
+
+            {### HEADER ###}
+            {% block main_header %}
+                <header class="mainHeader {% block header_tag_class %}{% endblock header_tag_class %}">
+                    {% block header_content %}{% endblock header_content %}
+                </header>
+            {% endblock main_header %}
+
+            
+            {### CONTENT ###}
+            {% block main_content %}
+                <main id="mainContent" role="main" class="{% block content_tag_class %}{% endblock content_tag_class %}">
+                    {% block container_content %}{% endblock container_content %}
+                </main>
+            {% endblock main_content %}
+
+            
+            {### FOOTER ###}
+            {% block main_footer %}
+                <footer class="footer {% block footer_tag_class %}{% endblock footer_tag_class %}">
+                    <div class="{% block footer_container_tag_class %}container{% endblock footer_container_tag_class %}">
+                        {% block footer_content %}{% endblock footer_content %}
+                    </div>
+                </footer>
+            {% endblock main_footer %}
+        {% endblock body %}
+        
+        {% block javascripts %}
+            <script src="/build/runtime.js"></script>
+            <script src="/build/app.js"></script>
+            {#{ encore_entry_script_tags('app') }#}
+        {% endblock %}
     </body>
 </html>
