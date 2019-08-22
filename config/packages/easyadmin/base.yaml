@@ -1,4 +1,9 @@
 easy_admin:
+    design:
+        menu:
+            # Users
+            - { label: 'Site' }
+            - { entity: 'Site', label: 'Site' }
     entities:
         Site:
             class: App\Entity\Site
