@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Site;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @author Hubsine <contact@hubsine.com>
  * 
- * @ORM\Entity(repositoryClass="App\Repository\SiteRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Site\SiteRepository")
  */
 class Site
 {
@@ -45,6 +45,18 @@ class Site
      * @Assert\NotBlank()
      */
     private $description;
+    
+    /**
+     * @var \App\Entity\Site\Logo
+     * 
+     * @ORM\OneToOne(targetEntity="\App\Entity\Site\Logo", mappedBy="site", orphanRemoval=true, cascade={"all"})
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     * 
+     * @Assert\NotBlank(message="assert.not_blank", groups={"new"})
+     * @Assert\Type(type="\App\Entity\Site\Logo", groups={"new"})
+     * @Assert\Valid()
+     */
+    private $logo;
     
     public function getId(): ?int
     {
@@ -109,5 +121,29 @@ class Site
     public function setDescription($description) 
     {
         $this->description = $description;
+    }
+    
+    /**
+     * Set logo
+     *
+     * @param \App\Entity\SiteLogo $logo
+     *
+     * @return SiteLogo
+     */
+    public function setLogo(\App\Entity\Site\Logo $logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return \App\Entity\Site\Logo
+     */
+    public function getLogo()
+    {
+        return $this->logo;
     }
 }

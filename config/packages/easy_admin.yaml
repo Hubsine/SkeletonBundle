@@ -1,2 +1,4 @@
+parameters:
+    app.directory.logo: '%kernel.project_dir%/public/images/logo'
 imports:
     - { resource: easyadmin/base.yaml }

@@ -6,10 +6,11 @@ easy_admin:
             - { entity: 'Site', label: 'Site' }
     entities:
         Site:
-            class: App\Entity\Site
+            class: App\Entity\Site\Site
             disabled_actions: []
             list:
                 fields: 
                     - name
                     - slogan
                     - descrip
+                    - { property: logo.name, type: 'image', base_path: '%app.directory.logo%' }
