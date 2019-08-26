@@ -4,7 +4,7 @@ security:
         in_memory:
             memory:
                 users:
-                    Influence Awards:
+                    demo_admin:
                         password: $2y$12$t3oU3sGx9qK4.0uTXpi5ZOyQrXWGXQSi9i1n1fElM/RSU31qckGwG
                         roles: 'ROLE_ADMIN'
     encoders:
@@ -23,5 +23,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
