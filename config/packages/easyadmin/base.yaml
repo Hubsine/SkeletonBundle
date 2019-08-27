@@ -2,15 +2,28 @@ easy_admin:
     design:
         menu:
             # Users
-            - { label: 'Site' }
-            - { entity: 'Site', label: 'Site' }
+            - { label: Appearance }
+            - { entity: Site, label: 'Site' }
+            - { entity: Logo, label: Logo }
     entities:
         Site:
-            class: App\Entity\Site\Site
+            class: App\Entity\Appearance\Site
             disabled_actions: []
             list:
                 fields: 
                     - name
                     - slogan
-                    - descrip
-                    - { property: logo.name, type: 'image', base_path: '%app.directory.logo%' }
+                    - description
+            new:
+                fields: 
+                    - name
+                    - slogan
+                    - description
+        Logo:
+            class: App\Entity\Appearance\Logo
+            list:
+                fields:
+                    - { property: media, template: 'EasyAdmin/vich_uploader_image.html.twig' }
+            form:
+                fields:
+                    - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }
