@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Hubsine\SkeletonBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

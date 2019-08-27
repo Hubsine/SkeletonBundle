@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Appearance;
+namespace Hubsine\SkeletonBundle\Repository\Appearance;
 
 use App\Entity\Appearance\Site;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

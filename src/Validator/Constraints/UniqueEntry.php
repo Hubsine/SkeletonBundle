@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Validator\Constraints;
+namespace Hubsine\SkeletonBundle\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 

@@ -39,12 +39,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "Hubsine\\SkeletonBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "App\\Tests\\": "tests/"
+            "Hubsine\\SkeletonBundle\\Tests\\": "tests/"
         }
     },
     "replace": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Appearance;
+namespace Hubsine\SkeletonBundle\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;

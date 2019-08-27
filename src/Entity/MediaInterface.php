@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace Hubsine\SkeletonBundle\Entity;
 
 /**
  * Description of MediaInterface
