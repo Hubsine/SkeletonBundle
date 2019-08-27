@@ -14,7 +14,13 @@ easy_admin:
                     - name
                     - slogan
                     - description
+            edit:
+                fields: 
+                    - name
+                    - slogan
+                    - description        
             new:
+                form_options: { validation_groups: ['Default', 'create'] }
                 fields: 
                     - name
                     - slogan
