@@ -4,6 +4,7 @@ namespace App\Traits\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 /**
  * Description of MediaTrait
@@ -15,11 +16,11 @@ trait MediaTrait
     /**
      * @var string 
      * 
-     * @ORM\Column(name="name", type="string", nullable=true)
-     * 
-     * @Assert\Type(type="string", message="assert.type")
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     *
+     * @var EmbeddedFile
      */
-    private $name;
+    private $media;
     
     /**
      * @ORM\Column(name="original_name", nullable=true)
@@ -29,27 +30,27 @@ trait MediaTrait
     private $originalName;
     
     /**
-     * Set name
+     * Set media
      *
-     * @param string $name
+     * @param string $media
      *
      * @return Media
      */
-    public function setName($name)
+    public function setMedia(EmbeddedFile $media)
     {
-        $this->name = $name;
+        $this->media = $media;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get media
      *
      * @return string
      */
-    public function getName()
+    public function getMedia(): ?EmbeddedFile
     {
-        return $this->name;
+        return $this->media;
     }
     
     public function getOriginalName()

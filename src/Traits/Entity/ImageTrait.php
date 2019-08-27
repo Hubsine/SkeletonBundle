@@ -87,7 +87,7 @@ trait ImageTrait
      * @param File|UploadedFile $file
      * @return $this
      */
-    public function setFile(File $file)
+    public function setFile(?File $file = null)
     {
         $this->file = $file;
         
@@ -105,7 +105,7 @@ trait ImageTrait
      * 
      * @return \Symfony\Component\HttpFoundation\File\UploadedFile
      */
-    public function getFile()
+    public function getFile(): ?File
     {
         return $this->file;
     }
