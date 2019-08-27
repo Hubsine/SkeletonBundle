@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Entity\Site;
+namespace App\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use App\Traits\Entity\ImageTrait;
 use App\Entity\EntityInterface;
 use App\Entity\MediaInterface;
@@ -35,7 +37,7 @@ class Logo implements EntityInterface, MediaInterface
      * 
      * @Vich\UploadableField(
      *  mapping="site_logo", 
-     *  fileNameProperty="name", 
+     *  fileNameProperty="media.name", 
      *  size="size", 
      *  mimeType="mimeType", 
      *  originalName="originalName"
@@ -48,6 +50,11 @@ class Logo implements EntityInterface, MediaInterface
      * )
      */
     private $file;
+
+    public function __construct() 
+    {
+        $this->media = new EmbeddedFile();
+    }
 
     /**
      * Get id
