@@ -29,3 +29,5 @@ easy_admin:
             form:
                 fields:
                     - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }
+            new:
+                form_options: { validation_groups: ['Default', 'create'] }

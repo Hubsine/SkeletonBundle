@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use App\Validator\Constraints\UniqueEntry;
 use App\Traits\Entity\ImageTrait;
 use App\Entity\EntityInterface;
 use App\Entity\MediaInterface;
@@ -18,6 +19,8 @@ use App\Entity\MediaInterface;
  * @ORM\Entity()
  * 
  * @Vich\Uploadable
+ * 
+ * @UniqueEntry(groups={"create"})
  */
 class Logo implements EntityInterface, MediaInterface
 {
