@@ -7,10 +7,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
-use App\Validator\Constraints\UniqueEntry;
-use App\Traits\Entity\ImageTrait;
-use App\Entity\EntityInterface;
-use App\Entity\MediaInterface;
+use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
+use Hubsine\SkeletonBundle\Traits\Entity\ImageTrait;
+use Hubsine\SkeletonBundle\Entity\EntityInterface;
+use Hubsine\SkeletonBundle\Entity\MediaInterface;
 
 /**
  * Logo

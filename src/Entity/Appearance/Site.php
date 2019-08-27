@@ -5,12 +5,12 @@ namespace Hubsine\SkeletonBundle\Entity\Appearance;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use App\Validator\Constraints\UniqueEntry;
+use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
 
 /**
  * @author Hubsine <contact@hubsine.com>
  * 
- * @ORM\Entity(repositoryClass="App\Repository\Appearance\SiteRepository")
+ * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Appearance\SiteRepository")
  * 
  * @Vich\Uploadable
  * 

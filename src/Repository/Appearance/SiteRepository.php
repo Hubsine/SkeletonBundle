@@ -2,7 +2,7 @@
 
 namespace Hubsine\SkeletonBundle\Repository\Appearance;
 
-use App\Entity\Appearance\Site;
+use Hubsine\SkeletonBundle\Entity\Appearance\Site;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 

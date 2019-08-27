@@ -7,7 +7,7 @@ easy_admin:
             - { entity: Logo, label: Logo }
     entities:
         Site:
-            class: App\Entity\Appearance\Site
+            class: Hubsine\SkeletonBundle\Entity\Appearance\Site
             disabled_actions: []
             list:
                 fields: 
@@ -22,7 +22,7 @@ easy_admin:
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
         Logo:
-            class: App\Entity\Appearance\Logo
+            class: Hubsine\SkeletonBundle\Entity\Appearance\Logo
             list:
                 fields:
                     - { property: media, template: 'EasyAdmin/vich_uploader_image.html.twig' }
