@@ -5,6 +5,7 @@ namespace App\Entity\Appearance;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use App\Validator\Constraints\UniqueEntry;
 
 /**
  * @author Hubsine <contact@hubsine.com>
@@ -12,6 +13,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\Appearance\SiteRepository")
  * 
  * @Vich\Uploadable
+ * 
+ * @UniqueEntry(groups={"create"})
  */
 class Site
 {
@@ -48,18 +51,6 @@ class Site
      * @Assert\NotBlank()
      */
     private $description;
-    
-    /**
-     * @var \App\Entity\Appearance\Logo
-     * 
-     * @ORM\OneToOne(targetEntity="\App\Entity\Appearance\Logo", orphanRemoval=true, cascade={"all"})
-     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
-     * 
-     * @Assert\NotBlank(message="assert.not_blank", groups={"new"})
-     * @Assert\Type(type="\App\Entity\Appearance\Logo", groups={"new"})
-     * @Assert\Valid()
-     */
-    private $logo;
     
     public function getId(): ?int
     {
@@ -124,29 +115,5 @@ class Site
     public function setDescription($description) 
     {
         $this->description = $description;
-    }
-    
-    /**
-     * Set logo
-     *
-     * @param \App\Entity\AppearanceLogo $logo
-     *
-     * @return AppearanceLogo
-     */
-    public function setLogo(\App\Entity\Appearance\Logo $logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return \App\Entity\Appearance\Logo
-     */
-    public function getLogo()
-    {
-        return $this->logo;
     }
 }
