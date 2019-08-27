@@ -9,7 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @author Hubsine <contact@hubsine.com>
  * 
- * @ORM\Entity(repositoryClass="App\Repository\Appearance\AppearanceRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Appearance\SiteRepository")
  * 
  * @Vich\Uploadable
  */
