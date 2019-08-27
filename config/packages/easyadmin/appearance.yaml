@@ -14,17 +14,13 @@ easy_admin:
                     - name
                     - slogan
                     - description
-            edit:
-                fields: 
+            form:
+                fields:
                     - name
                     - slogan
-                    - description        
+                    - { property: description, type: 'fos_ckeditor', type_options: { config_name: 'clear_config' } }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
-                fields: 
-                    - name
-                    - slogan
-                    - description
         Logo:
             class: App\Entity\Appearance\Logo
             list:
