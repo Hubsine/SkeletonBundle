@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Site;
+namespace App\Repository\Appearance;
 
-use App\Entity\Site\Site;
+use App\Entity\Appearance\Site;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
