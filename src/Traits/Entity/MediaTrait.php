@@ -17,11 +17,11 @@ trait MediaTrait
     /**
      * @var string 
      * 
-     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     * @ORM\Column(name="name", type="string", nullable=true)
      *
-     * @var EmbeddedFile
+     * @Assert\Type(type="string", message="assert.type")
      */
-    private $media;
+    private $name;
     
     /**
      * @ORM\Column(name="original_name", nullable=true)
@@ -31,35 +31,29 @@ trait MediaTrait
     private $originalName;
     
     /**
-     * @var string
+     * Set name
      * 
-     * @Gedmo\Slug(fields={"originalName"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
-
-    /**
-     * Set media
+     * @param string $name
      *
      * @param string $media
      *
      * @return Media
      */
-    public function setMedia(EmbeddedFile $media)
+    public function setName($name)
     {
-        $this->media = $media;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get media
+     * Get name
      *
      * @return string
      */
-    public function getMedia(): ?EmbeddedFile
+    public function getName()
     {
-        return $this->media;
+        return $this->name;
     }
     
     public function getOriginalName()

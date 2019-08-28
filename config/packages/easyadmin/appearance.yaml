@@ -25,7 +25,7 @@ easy_admin:
             class: Hubsine\SkeletonBundle\Entity\Appearance\Logo
             list:
                 fields:
-                    - { property: media, template: 'EasyAdmin/vich_uploader_image.html.twig' }
+                    - { property: name, template: 'EasyAdmin/vich_uploader_image.html.twig' }
                     - slug
             form:
                 fields:
