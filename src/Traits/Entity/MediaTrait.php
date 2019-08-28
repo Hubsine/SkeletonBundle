@@ -3,6 +3,7 @@
 namespace Hubsine\SkeletonBundle\Traits\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
@@ -29,6 +30,14 @@ trait MediaTrait
      */
     private $originalName;
     
+    /**
+     * @var string
+     * 
+     * @Gedmo\Slug(fields={"originalName"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
     /**
      * Set media
      *
@@ -61,5 +70,10 @@ trait MediaTrait
     public function setOriginalName(string $originalName = null)
     {
         $this->originalName = $originalName;
+    }
+    
+    public function getSlug()
+    {
+        return $this->slug;
     }
 }

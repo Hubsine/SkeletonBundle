@@ -7,7 +7,9 @@ vich_uploader:
         site_logo:
             uri_prefix: /images/logo
             upload_destination: '%logo_upload_destination%'
-            namer: Vich\UploaderBundle\Naming\OrignameNamer
+            namer: 
+                service: Vich\UploaderBundle\Naming\PropertyNamer
+                options: { property: 'slug' }
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
