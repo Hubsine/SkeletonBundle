@@ -3,6 +3,7 @@
 namespace Hubsine\SkeletonBundle\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
 use Hubsine\SkeletonBundle\Traits\Entity\ImageTrait;
@@ -21,8 +22,6 @@ use Hubsine\SkeletonBundle\Entity\MediaInterface;
  */
 class Logo implements EntityInterface, MediaInterface
 {
-    const VICH_MAPPING = 'site_logo';
-    
     use ImageTrait;
     
     /**
@@ -33,6 +32,25 @@ class Logo implements EntityInterface, MediaInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    
+    /**
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
+     * 
+     * @Vich\UploadableField(
+     *  mapping="site_appearance", 
+     *  fileNameProperty="name", 
+     *  size="size", 
+     *  mimeType="mimeType", 
+     *  originalName="originalName"
+     * )
+     * 
+     * @Assert\Image(
+     *  maxSize="2M", 
+     *  maxSizeMessage="assert.file.max_size", 
+     *  mimeTypesMessage="assert.file.mime_types"
+     * )
+     */
+    private $file;
     
     /**
      * Get id
