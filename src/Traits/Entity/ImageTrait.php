@@ -20,6 +20,25 @@ trait ImageTrait
     use MediaTrait;
     
     /**
+     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
+     * 
+     * @Vich\UploadableField(
+     *  mapping="site_appearance", 
+     *  fileNameProperty="name", 
+     *  size="size", 
+     *  mimeType="mimeType", 
+     *  originalName="originalName"
+     * )
+     * 
+     * @Assert\Image(
+     *  maxSize="2M", 
+     *  maxSizeMessage="assert.file.max_size", 
+     *  mimeTypesMessage="assert.file.mime_types"
+     * )
+     */
+    private $file;
+
+    /**
      * @var string 
      * 
      * @ORM\Column(name="mime_type", type="string")

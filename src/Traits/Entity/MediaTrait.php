@@ -5,7 +5,6 @@ namespace Hubsine\SkeletonBundle\Traits\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 /**
  * Description of MediaTrait
@@ -17,18 +16,25 @@ trait MediaTrait
     /**
      * @var string 
      * 
-     * @ORM\Column(name="name", type="string", nullable=true)
+     * @ORM\Column(name="name", type="string", nullable=false)
      *
      * @Assert\Type(type="string", message="assert.type")
      */
     private $name;
     
     /**
-     * @ORM\Column(name="original_name", nullable=true)
+     * @ORM\Column(name="original_name", nullable=false)
      * 
      * @Assert\Type(type="string", message="assert.type")
      */
     private $originalName;
+    
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
     
     /**
      * Set name
@@ -64,10 +70,5 @@ trait MediaTrait
     public function setOriginalName(string $originalName = null)
     {
         $this->originalName = $originalName;
-    }
-    
-    public function getSlug()
-    {
-        return $this->slug;
     }
 }

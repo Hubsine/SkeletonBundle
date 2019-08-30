@@ -1,15 +1,13 @@
 parameters:
-    logo_upload_destination: '%kernel.project_dir%/public/images/logo'
+    logo_upload_destination: '%kernel.project_dir%/public/images/appearance'
 vich_uploader:
     db_driver: orm
 
     mappings:
-        site_logo:
-            uri_prefix: /images/logo
+        site_appearance:
+            uri_prefix: /images/appearance
             upload_destination: '%logo_upload_destination%'
-            namer: 
-                service: Vich\UploaderBundle\Naming\PropertyNamer
-                options: { property: 'slug' }
+            namer: Hubsine\SkeletonBundle\Naming\SmartUniqueNamer
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true

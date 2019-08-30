@@ -26,7 +26,6 @@ easy_admin:
             list:
                 fields:
                     - { property: name, template: 'EasyAdmin/vich_uploader_image.html.twig' }
-                    - slug
             form:
                 fields:
                     - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }

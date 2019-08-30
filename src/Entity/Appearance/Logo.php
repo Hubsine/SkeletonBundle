@@ -3,11 +3,7 @@
 namespace Hubsine\SkeletonBundle\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
 use Hubsine\SkeletonBundle\Traits\Entity\ImageTrait;
 use Hubsine\SkeletonBundle\Entity\EntityInterface;
@@ -25,6 +21,8 @@ use Hubsine\SkeletonBundle\Entity\MediaInterface;
  */
 class Logo implements EntityInterface, MediaInterface
 {
+    const VICH_MAPPING = 'site_logo';
+    
     use ImageTrait;
     
     /**
@@ -36,30 +34,6 @@ class Logo implements EntityInterface, MediaInterface
      */
     private $id;
     
-    /**
-     * @var \Symfony\Component\HttpFoundation\File\UploadedFile
-     * 
-     * @Vich\UploadableField(
-     *  mapping="site_logo", 
-     *  fileNameProperty="media.name", 
-     *  size="size", 
-     *  mimeType="mimeType", 
-     *  originalName="originalName"
-     * )
-     * 
-     * @Assert\Image(
-     *  maxSize="2M", 
-     *  maxSizeMessage="assert.file.max_size", 
-     *  mimeTypesMessage="assert.file.mime_types"
-     * )
-     */
-    private $file;
-
-    public function __construct() 
-    {
-        $this->media = new EmbeddedFile();
-    }
-
     /**
      * Get id
      *
