@@ -12,8 +12,6 @@ use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
  * 
  * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Appearance\SiteRepository")
  * 
- * @Vich\Uploadable
- * 
  * @UniqueEntry(groups={"create"})
  */
 class Site
