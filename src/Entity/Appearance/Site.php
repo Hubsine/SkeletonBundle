@@ -5,8 +5,10 @@ namespace Hubsine\SkeletonBundle\Entity\Appearance;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
+use Hubsine\SkeletonBundle\Traits\Entity\MagicGetTrait;
 
 /**
  * @author Hubsine <contact@hubsine.com>
@@ -17,6 +19,9 @@ use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
  */
 class Site
 {
+    use ORMBehaviors\Translatable\Translatable;
+    use MagicGetTrait;
+        
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -56,10 +61,5 @@ class Site
     public function setName($name) 
     {
         $this->name = $name;
-    }
-    
-    public function __get($name) 
-    {
-        #call_user_func_array([__CLASS__ . 'Translation', 'get' . ucfirst($name)], []);
     }
 }

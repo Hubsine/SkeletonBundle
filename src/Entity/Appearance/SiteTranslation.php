@@ -4,14 +4,19 @@ namespace Hubsine\SkeletonBundle\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * SiteTranslation
  *
+ * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
+ * 
  * @author Hubsine <contact@hubsine.com>
  */
 class SiteTranslation
 {
+    use ORMBehaviors\Translatable\Translation;
+    
     /**
      * @var string
      * 

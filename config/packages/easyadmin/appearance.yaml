@@ -17,20 +17,19 @@ easy_admin:
             form:
                 fields:
                     - name
+                    - { property: 'translations', label: false, type: A2lix\TranslationFormBundle\Form\Type\TranslationsType,
+                        type_options: 
+                        {
+                            default_locale: '%locale%',
+                            fields: 
+                            {
+                                slogan: { field_type: 'Symfony\Component\Form\Extension\Core\Type\TextType' },
+                                description: { field_type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
+                            }
+                        }
+                        }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
-        SiteTranslation:
-            class: Hubsine\SkeletonBundle\Entity\Appearance\SiteTranslation
-            disabled_actions: []
-            list:
-                fields: 
-                    - slogan
-                    - description
-            form:
-                fields:
-                    - { property: locale }
-                    - { property: slogan }
-                    - { property: description, type: 'fos_ckeditor', type_options: { config_name: 'clear_config' } }
         Logo:
             class: Hubsine\SkeletonBundle\Entity\Appearance\Logo
             list:
