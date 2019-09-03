@@ -17,10 +17,20 @@ easy_admin:
             form:
                 fields:
                     - name
-                    - slogan
-                    - { property: description, type: 'fos_ckeditor', type_options: { config_name: 'clear_config' } }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
+        SiteTranslation:
+            class: Hubsine\SkeletonBundle\Entity\Appearance\SiteTranslation
+            disabled_actions: []
+            list:
+                fields: 
+                    - slogan
+                    - description
+            form:
+                fields:
+                    - { property: locale }
+                    - { property: slogan }
+                    - { property: description, type: 'fos_ckeditor', type_options: { config_name: 'clear_config' } }
         Logo:
             class: Hubsine\SkeletonBundle\Entity\Appearance\Logo
             list:

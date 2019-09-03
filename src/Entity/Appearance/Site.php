@@ -3,6 +3,7 @@
 namespace Hubsine\SkeletonBundle\Entity\Appearance;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
@@ -11,6 +12,8 @@ use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
  * @author Hubsine <contact@hubsine.com>
  * 
  * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Appearance\SiteRepository")
+ * 
+ * @Gedmo\TranslationEntity(class="Hubsine\SkeletonBundle\Entity\Appearance\SiteTranslation")
  * 
  * @UniqueEntry(groups={"create"})
  */
@@ -32,24 +35,9 @@ class Site
      */
     private $name;
     
-    /**
-     * @var string
-     * 
-     * @ORM\Column(name="slogan", type="string", nullable=false)
-     * 
-     * @Assert\NotBlank()
-     */
-    private $slogan;
+    private $trans;
 
-    /**
-     * @var string
-     * 
-     * @ORM\Column(name="description", type="string", nullable=false)
-     * 
-     * @Assert\NotBlank()
-     */
-    private $description;
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,26 +54,6 @@ class Site
     }
     
     /**
-     * Get slogan 
-     * 
-     * @return string
-     */
-    public function getSlogan() 
-    {
-        return $this->slogan;
-    }
-    
-    /**
-     * Get description
-     * 
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * Set name
      * 
      * @param string $name
@@ -95,23 +63,8 @@ class Site
         $this->name = $name;
     }
     
-    /**
-     * Set slogan
-     * 
-     * @param string $slogan
-     */
-    public function setSlogan($slogan) 
+    public function __get($name) 
     {
-        $this->slogan = $slogan;
-    }
-
-    /**
-     * Set description
-     * 
-     * @param string $description
-     */
-    public function setDescription($description) 
-    {
-        $this->description = $description;
+        #call_user_func_array([__CLASS__ . 'Translation', 'get' . ucfirst($name)], []);
     }
 }
