@@ -13,8 +13,6 @@ use Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntry;
  * 
  * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Appearance\SiteRepository")
  * 
- * @Gedmo\TranslationEntity(class="Hubsine\SkeletonBundle\Entity\Appearance\SiteTranslation")
- * 
  * @UniqueEntry(groups={"create"})
  */
 class Site
@@ -35,9 +33,6 @@ class Site
      */
     private $name;
     
-    private $trans;
-
-
     public function getId(): ?int
     {
         return $this->id;
