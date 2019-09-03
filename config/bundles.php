@@ -14,5 +14,7 @@ return [
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
-    Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle::class => ['all' => true]
+    Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle::class => ['all' => true],
+    A2lix\AutoFormBundle\A2lixAutoFormBundle::class => ['all' => true],
+    A2lix\TranslationFormBundle\A2lixTranslationFormBundle::class => ['all' => true],
 ];
