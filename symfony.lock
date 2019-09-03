@@ -115,6 +115,9 @@
     "jms/metadata": {
         "version": "1.7.0"
     },
+    "knplabs/doctrine-behaviors": {
+        "version": "1.6.0"
+    },
     "nikic/php-parser": {
         "version": "v4.2.3"
     },
