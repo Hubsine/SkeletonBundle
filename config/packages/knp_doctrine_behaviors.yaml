@@ -1,0 +1,4 @@
+imports: 
+    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+knp_doctrine_behaviors:
+    translatable:      true
