@@ -6,9 +6,11 @@ fos_ck_editor:
     default_config: advanced_config
     configs:
         clear_config:
+            language: fr
             width: '100%'
             toolbar:
         advanced_config:
+            language: fr
             toolbar:
                 - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link'] }
 
