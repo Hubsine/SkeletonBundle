@@ -9,8 +9,6 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * SiteTranslation
  *
- * @ORM\Entity(repositoryClass="Gedmo\Translatable\Entity\Repository\TranslationRepository")
- * 
  * @author Hubsine <contact@hubsine.com>
  */
 class SiteTranslation
