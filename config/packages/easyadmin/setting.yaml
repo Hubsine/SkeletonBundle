@@ -1,0 +1,23 @@
+easy_admin:
+    design:
+        menu:
+            # Users
+            - { label: Setting }
+            - { entity: Email, label: Email }
+    entities:
+        Email:
+            class: %entity_prefix_namespace%\Setting\Email
+            form:
+                fields:
+                    - username
+                    - { property: password, type: password }
+                    - { property: fromEmail, type: email }
+                    - fromName
+                    - { property: responseEmail, type: email }
+                    - host
+                    - { property: port, type: integer }
+                    - { property: encryption, type: %form_prefix_namespace%\Setting\SettingEncryptionType }
+                    - { property: authMode, type: %form_prefix_namespace%\Setting\SettingAuthType }
+            new:
+                form_options: { validation_groups: ['Default', 'create'] }
+            
