@@ -5,6 +5,7 @@ easy_admin:
             - { label: Appearance }
             - { entity: Site, label: 'Site' }
             - { entity: Logo, label: Logo }
+            - { entity: SocialNetwork, label: 'Réseaux sociaux' }
     entities:
         Site:
             class: Hubsine\SkeletonBundle\Entity\Appearance\Site
@@ -40,3 +41,6 @@ easy_admin:
                     - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
+        SocialNetwork:
+            class: Hubsine\SkeletonBundle\Entity\Appearance\SocialNetwork
+            
