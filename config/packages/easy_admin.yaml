@@ -1,4 +1,6 @@
 parameters:
+    entity_prefix_namespace: 'Hubsine\SkeletonBundle\Entity'
     app.directory.logo: '%kernel.project_dir%/public/images/logo'
 imports:
     - { resource: easyadmin/appearance.yaml }
+    - { resource: easyadmin/page.yaml }

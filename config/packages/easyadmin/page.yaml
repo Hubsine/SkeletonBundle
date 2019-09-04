@@ -1,0 +1,31 @@
+easy_admin:
+    design:
+        menu:
+            # Users
+            - { label: Content }
+            - { entity: Page, label: 'Page' }
+    entities:
+        Page:
+            class: %entity_prefix_namespace%\Content\Page
+            disabled_actions: []
+            list:
+                fields: 
+                    - title
+                    - tag
+            form:
+                fields:
+                    - { property: tag, type: Hubsine\SkeletonBundle\Form\Content\PageTagType, virtual: true }
+                    - { property: 'translations', label: false, type: A2lix\TranslationFormBundle\Form\Type\TranslationsType,
+                        type_options: 
+                        {
+                            default_locale: '%locale%',
+                            fields: 
+                            {
+                                title: { field_type: 'Symfony\Component\Form\Extension\Core\Type\TextType' },
+                                content: { field_type: 'FOS\CKEditorBundle\Form\Type\CKEditorType', config_name: advanced_config }
+                            }
+                        }
+                        }
+            new:
+                form_options: { validation_groups: ['Default', 'create'] }
+        
