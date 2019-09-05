@@ -16,14 +16,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 class PageTranslation
 {
     use ORMBehaviors\Translatable\Translation;
-    
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=255)
      * 
@@ -37,11 +30,6 @@ class PageTranslation
      * @Assert\NotBlank()
      */
     private $content;
-    
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
     
     public function getTitle(): ?string
     {

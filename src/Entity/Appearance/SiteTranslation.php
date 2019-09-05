@@ -18,13 +18,6 @@ class SiteTranslation
     use ORMBehaviors\Translatable\Translation;
     
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-    
-    /**
      * @var string
      * 
      * @ORM\Column(name="slogan", type="string", nullable=false)
@@ -41,11 +34,6 @@ class SiteTranslation
      * @Assert\NotBlank()
      */
     private $description;
-    
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
     
     /**
      * Get slogan 
