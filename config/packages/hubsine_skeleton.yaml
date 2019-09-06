@@ -1,3 +1,10 @@
+imports: 
+    - { resource: easy_admin.yaml }
+    - { resource: fos_ckeditor.yaml }
+    - { resource: knp_doctrine_behaviors.yaml }
+    - { resource: stof_doctrine_extensions.yaml }
+    - { resource: vich_uploader.yaml }
+    - { resource: webpack_encore.yaml }
 parameters:
     locale: fr
 services:
@@ -15,3 +22,4 @@ services:
     Hubsine\SkeletonBundle\Naming\:
         resource: '../../src/Naming/'
         public: true
+               
