@@ -27,18 +27,23 @@ class TablePrefixSubscriber implements EventSubscriber
     public function loadClassMetadata(LoadClassMetadataEventArgs $eventArgs)
     {
         $classMetadata = $eventArgs->getClassMetadata();
+        
+        if (FALSE !== strpos($classMetadata->namespace, 'Hubsine\SkeletonBundle')) 
+        {
 
-        if (!$classMetadata->isInheritanceTypeSingleTable() || $classMetadata->getName() === $classMetadata->rootEntityName) {
-            $classMetadata->setPrimaryTable([
-                'name' => $this->prefix . $classMetadata->getTableName()
-            ]);
-        }
-
-        foreach ($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
-            if ($mapping['type'] == \Doctrine\ORM\Mapping\ClassMetadataInfo::MANY_TO_MANY && $mapping['isOwningSide']) {
-                $mappedTableName = $mapping['joinTable']['name'];
-                $classMetadata->associationMappings[$fieldName]['joinTable']['name'] = $this->prefix . $mappedTableName;
+            if (!$classMetadata->isInheritanceTypeSingleTable() || $classMetadata->getName() === $classMetadata->rootEntityName) {
+                $classMetadata->setPrimaryTable([
+                    'name' => $this->prefix . $classMetadata->getTableName()
+                ]);
             }
+
+            foreach ($classMetadata->getAssociationMappings() as $fieldName => $mapping) {
+                if ($mapping['type'] == \Doctrine\ORM\Mapping\ClassMetadataInfo::MANY_TO_MANY && $mapping['isOwningSide']) {
+                    $mappedTableName = $mapping['joinTable']['name'];
+                    $classMetadata->associationMappings[$fieldName]['joinTable']['name'] = $this->prefix . $mappedTableName;
+                }
+            }
+        
         }
     }
     
