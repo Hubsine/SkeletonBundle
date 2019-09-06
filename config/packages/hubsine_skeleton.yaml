@@ -1,0 +1,17 @@
+parameters:
+    locale: fr
+services:
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+    Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber:
+        arguments:
+            $prefix: '%env(string:DATABASE_PREFIX)%'
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+            
+    ###
+    # Custom File Namer
+    ###
+    Hubsine\SkeletonBundle\Naming\:
+        resource: '../../src/Naming/'
+        public: true
