@@ -1,4 +1,5 @@
 imports: 
+    - { resource: a2lix.yaml }
     - { resource: easy_admin.yaml }
     - { resource: fos_ckeditor.yaml }
     - { resource: knp_doctrine_behaviors.yaml }
