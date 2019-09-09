@@ -16,3 +16,7 @@ npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 /public/images/
+/bin/
+/config/
+/public/
+/src/Kernel.php
