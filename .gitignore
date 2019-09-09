@@ -19,4 +19,6 @@ yarn-error.log
 /bin/
 /config/
 /public/
+/templates/
+/trannslation/
 /src/Kernel.php
