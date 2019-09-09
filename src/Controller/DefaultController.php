@@ -16,7 +16,7 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        return $this->render('base.html.twig', [
+        return $this->render('Base/front.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }
