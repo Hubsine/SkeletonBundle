@@ -3,6 +3,7 @@
 namespace Hubsine\SkeletonBundle\Entity\Content;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
@@ -31,6 +32,12 @@ class PageTranslation
      */
     private $content;
     
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+    
     public function getTitle(): ?string
     {
         return $this->title;
@@ -51,6 +58,18 @@ class PageTranslation
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+    
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -12,6 +12,7 @@ easy_admin:
                 fields: 
                     - title
                     - tag
+                    - slug
             form:
                 fields:
                     - { property: tag, type: Hubsine\SkeletonBundle\Form\Content\PageTagType, virtual: true }
