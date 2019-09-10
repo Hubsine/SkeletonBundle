@@ -17,7 +17,7 @@ use Hubsine\SkeletonBundle\Traits\Entity\MagicGetTrait;
  */
 class Page
 {
-    const AVAIBLES_TAGS = ['contact', 'cgu', 'cgv', 'mentions-legales', 'points-distribution'];
+    const AVAIBLES_TAGS = ['a-propos', 'contact', 'cgu', 'cgv', 'mentions-legales', 'points-distribution'];
     
     use ORMBehaviors\Translatable\Translatable;
     use MagicGetTrait;
