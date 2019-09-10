@@ -11,8 +11,7 @@ fos_ck_editor:
             toolbar:
         advanced_config:
             language: fr
-            toolbar:
-                - { name: "styles", items: ['Bold', 'Italic', 'BulletedList', 'Link'] }
+            toolbar: full
 
 twig:
     form_themes:
