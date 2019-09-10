@@ -13,7 +13,6 @@ use Hubsine\SkeletonBundle\Traits\Entity\MagicGetTrait;
  * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Content\PageRepository")
  * 
  * @UniqueEntity("tag")
- * @UniqueEntry(groups={"create"})
  */
 class Page
 {
