@@ -9,8 +9,13 @@ imports:
 parameters:
     locale: fr
 services:
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    
+    Hubsine\SkeletonBundle\Repository\:
+        resource: '../../../Repository/*'
+        tags: ['doctrine.repository_service']
+        arguments:
+            $registry: '@doctrine'
+        
     Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber:
         arguments:
             $prefix: 'hubsine_skeleton_'
