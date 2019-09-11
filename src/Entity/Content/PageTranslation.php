@@ -10,7 +10,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * PageTranslation
  * 
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Hubsine\SkeletonBundle\Repository\Content\PageTranslationRepository")
  *
  * @author Hubsine <contact@hubsine.com>
  */
