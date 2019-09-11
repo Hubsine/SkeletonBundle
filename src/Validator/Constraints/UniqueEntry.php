@@ -25,4 +25,14 @@ class UniqueEntry extends Constraint
     {
         return self::CLASS_CONSTRAINT;
     }
+    
+    /**
+     * The validator must be defined as a service with this name.
+     *
+     * @return string
+     */
+    public function validatedBy()
+    {
+        return get_class(self) . 'Validator';
+    }
 }

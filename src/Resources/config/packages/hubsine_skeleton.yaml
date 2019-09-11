@@ -10,6 +10,15 @@ parameters:
     locale: fr
 services:
     
+    ###
+    # Constraint Validator
+    ###
+    Hubsine\SkeletonBundle\Validator\Constraints\:
+        resource: '../../../Validator/Constraints/*Validator'
+        tags: ['validator.constraint_validator']
+        arguments:
+            $registry: '@doctrine'
+            
     Hubsine\SkeletonBundle\Repository\:
         resource: '../../../Repository/*'
         tags: ['doctrine.repository_service']
