@@ -33,6 +33,6 @@ class UniqueEntry extends Constraint
      */
     public function validatedBy()
     {
-        return get_class(self) . 'Validator';
+        return get_class($this) . 'Validator';
     }
 }
