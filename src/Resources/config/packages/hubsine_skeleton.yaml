@@ -6,6 +6,7 @@ imports:
     - { resource: stof_doctrine_extensions.yaml }
     - { resource: vich_uploader.yaml }
     - { resource: webpack_encore.yaml }
+    - { resource: twig.yaml }
 parameters:
     locale: fr
 services:
@@ -13,18 +14,24 @@ services:
     ###
     # Constraint Validator
     ###
-    Hubsine\SkeletonBundle\Validator\Constraints\:
-        resource: '../../../Validator/Constraints/*Validator'
+    Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntryValidator:
+        #resource: '../../../Validator/Constraints/*Validator'
         tags: ['validator.constraint_validator']
         arguments:
             $registry: '@doctrine'
             
+    ###
+    # Repository
+    ###
     Hubsine\SkeletonBundle\Repository\:
         resource: '../../../Repository/*'
         tags: ['doctrine.repository_service']
         arguments:
             $registry: '@doctrine'
         
+    ###
+    # Doctrine Table Prefix
+    ###
     Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber:
         arguments:
             $prefix: 'hubsine_skeleton_'
@@ -38,3 +45,10 @@ services:
         resource: '../../../Naming/'
         public: true
                
+    ###
+    # SiteVariable
+    ###
+    Hubsine\SkeletonBundle\Twig\SkeletonVariable:
+        arguments:
+            $doctrine: '@doctrine'
+        
