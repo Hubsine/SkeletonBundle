@@ -36,7 +36,7 @@ class SkeletonVariable
         
         $this->socialNetwork = $this->doctrine
             ->getRepository(AppearanceEntity\SocialNetwork::class)
-            ->findOneBy([]);
+            ->findAll();
     }
     
     public function getSite()
