@@ -25,6 +25,7 @@
         "symfony/dotenv": "3.4.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "3.4.*",
+        "symfony/swiftmailer-bundle": "^3.2@dev",
         "symfony/twig-bundle": "3.4.*",
         "symfony/validator": "3.4.*",
         "symfony/webpack-encore-bundle": "^1.6",
@@ -74,7 +75,6 @@
     "conflict": {
         "symfony/symfony": "*"
     },
-    "minimum-stability": "dev",
     "extra": {
         "symfony": {
             "allow-contrib": false,
