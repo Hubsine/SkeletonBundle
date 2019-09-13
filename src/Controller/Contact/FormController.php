@@ -28,28 +28,6 @@ class FormController extends Controller
             
             if( $emailConfig instanceof Email )
             {
-                $message = (new \Swift_Message('Hello Email'))
-                    ->setFrom('send@example.com')
-                    ->setTo('recipient@example.com')
-                    ->setSubject($subject)    
-                    ->setBody(
-                        $this->renderView(
-                            '@HubsineSkeleton/contact/message.html.twig',
-                            ['name' => $name]
-                        ),
-                        'text/html'
-                    )
-
-                    // you can remove the following code if you don't define a text version for your emails
-                    ->addPart(
-                        $this->renderView(
-                            'Emails/registration.txt.twig',
-                            ['name' => $name]
-                        ),
-                        'text/plain'
-                    )
-                ;
-                
                 $mailer = new \Swift_Mailer( $this->getTransport($emailConfig) );
                 $mailer->send( $this->getMessage($formEntity, $emailConfig) );
             }
