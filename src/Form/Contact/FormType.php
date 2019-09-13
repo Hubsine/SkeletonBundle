@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class FormType extends AbstractType
 {
@@ -17,7 +18,7 @@ class FormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'E-mail', 
-                #'required'  => true
+                'required'  => false
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'First name',
@@ -30,6 +31,9 @@ class FormType extends AbstractType
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'required'  => true
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Send'
             ])
         ;
     }
