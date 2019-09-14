@@ -3,8 +3,27 @@ easy_admin:
         menu:
             # Users
             - { label: Setting }
+            - { entity: Maintenance, label: Maintenance }
             - { entity: Email, label: Email }
     entities:
+        Maintenance:
+            class: %entity_prefix_namespace%\Setting\Maintenance
+            form: 
+                fields:
+                    - enable
+                    - { property: 'translations', label: false, type: A2lix\TranslationFormBundle\Form\Type\TranslationsType,
+                        type_options: 
+                        {
+                            default_locale: '%locale%',
+                            fields: 
+                            {
+                                title: { field_type: 'Symfony\Component\Form\Extension\Core\Type\TextType' },
+                                content: { field_type: 'FOS\CKEditorBundle\Form\Type\CKEditorType', config_name: advanced_config }
+                            }
+                        }
+                       }
+                new:
+                    #form_options: { validation_groups: ['Default', 'create'] }
         Email:
             class: %entity_prefix_namespace%\Setting\Email
             form:
