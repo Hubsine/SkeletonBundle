@@ -18,6 +18,11 @@ class SiteTranslation
     use ORMBehaviors\Translatable\Translation;
     
     /**
+     * @Assert\Valid()
+     */
+    protected $translations;
+    
+    /**
      * @var string
      * 
      * @ORM\Column(name="slogan", type="string", nullable=false)
