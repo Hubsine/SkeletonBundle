@@ -30,14 +30,25 @@ services:
             $registry: '@doctrine'
         
     ###
-    # Doctrine Table Prefix
+    # EVENT SUBSCRIBER
     ###
+    
     Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber:
         arguments:
             $prefix: 'hubsine_skeleton_'
         tags:
             - { name: doctrine.event_subscriber, connection: default }
             
+    Hubsine\SkeletonBundle\EventSubscriber\MaintenanceSubscriber:
+        arguments:
+            $doctrine: '@doctrine'
+            $authorizationChecker: '@security.authorization_checker'
+            $tokenStorage: '@security.token_storage'
+            $twig: '@twig'
+            $env: '%env(string:APP_ENV)%'
+        tags: ['kernel.event_subscriber']
+            
+      
     ###
     # Custom File Namer
     ###

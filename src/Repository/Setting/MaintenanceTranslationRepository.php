@@ -18,6 +18,17 @@ class MaintenanceTranslationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, MaintenanceTranslation::class);
     }
+    
+    public function findOneByEnabled(bool $enable)
+    {
+        return $this->createQueryBuilder('m')
+                ->select('m, t')
+                ->join('m.translatable', 't')
+                ->andWhere('t.enable = :enable')
+                ->setParameter('enable', $enable)
+                ->getQuery()
+                ->getOneOrNullResult();
+    }
 
     // /**
     //  * @return Maintenance[] Returns an array of Maintenance objects
