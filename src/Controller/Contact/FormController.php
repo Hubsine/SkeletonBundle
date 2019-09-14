@@ -12,7 +12,7 @@ class FormController extends Controller
 {
     /**
      */
-    public function index(Request $request)
+    public function indexAction(Request $request)
     {
         $formEntity = new Form();
         $form       = $this->createForm(FormType::class, $formEntity);
