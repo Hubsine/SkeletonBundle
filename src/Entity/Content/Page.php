@@ -20,6 +20,11 @@ class Page
     use MagicGetTrait;
     
     /**
+     * @Assert\Valid()
+     */
+    protected $translations;
+    
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
