@@ -21,6 +21,11 @@ class Site
 {
     use ORMBehaviors\Translatable\Translatable;
     use MagicGetTrait;
+    
+    /**
+     * @Assert\Valid()
+     */
+    protected $translations;
         
     /**
      * @ORM\Id()
