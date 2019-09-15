@@ -7,6 +7,8 @@ imports:
     - { resource: vich_uploader.yaml }
     - { resource: webpack_encore.yaml }
     - { resource: twig.yaml }
+    - { resource: fos_user.yaml }
+    - { resource: security.yaml }
 parameters:
     locale: fr
 services:

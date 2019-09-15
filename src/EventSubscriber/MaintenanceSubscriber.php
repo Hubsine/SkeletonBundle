@@ -3,7 +3,7 @@
 namespace Hubsine\SkeletonBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -32,7 +32,7 @@ class MaintenanceSubscriber implements EventSubscriberInterface
      * @var TwigInterface $twig
      */
     private $twig;
-    
+
     /**
      * @var string
      */
@@ -44,7 +44,12 @@ class MaintenanceSubscriber implements EventSubscriberInterface
      * @var MaintenanceTranslation
      */
     private $maintenancePage;
-    
+
+    /**
+     * @var array
+     */
+    private $exludeRoutes = ['fos_user_security_login'];
+
     public function __construct(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker,
         \Twig_Environment $twig, $env) 
     {
@@ -61,16 +66,20 @@ class MaintenanceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'kernel.request' => 'onKernelRequest',
+            KernelEvents::RESPONSE => 'onKernelRequest',
         ];
     }
     
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(FilterResponseEvent $event)
     {
         $routeName      = $event->getRequest()->attributes->get('_route');
         $isMaintenance  = $this->isMaintenanceMode();
         
-        if( $isMaintenance && $this->isSuperAdmin() && $routeName !== 'fos_user_security_login' )
+        $firewall = $event->getRequest()->attributes->get('_firewall_context');
+        
+        if( $isMaintenance && ! $this->isAdmin() 
+            &&  $firewall === 'security.firewall.map.context.main' 
+            && ! in_array($routeName, $this->exludeRoutes) )
         {
         
             $response = $event->getResponse() === null ? new Response() : $event->getResponse();
@@ -100,9 +109,16 @@ class MaintenanceSubscriber implements EventSubscriberInterface
      * 
      * @return boolean
      */
-    private function isSuperAdmin()
+    private function isAdmin()
     {
-        return $this->authorizationChecker->isGranted('ROLE_ADMIN');
+        $user = $this->tokenStorage->getToken() === null ? null : $this->tokenStorage->getToken()->getUser();
+        
+        if( $user instanceof \FOS\UserBundle\Model\UserInterface && $user->hasRole('ROLE_ADMIN') )
+        {
+            return true;
+        }
+        
+        return false;
     }
     
     /**
