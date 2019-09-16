@@ -30,13 +30,23 @@ class SkeletonVariable
             ->getRepository(AppearanceEntity\SiteTranslation::class)
             ->findOne();
         
+        if( $this->site === null) 
+        {
+            $this->site = new AppearanceEntity\SiteTranslation();
+            $this->site->setTranslatable(new AppearanceEntity\Site());
+        }
+        
         $this->logo = $this->doctrine
             ->getRepository(AppearanceEntity\Logo::class)
             ->findOneBy([]);
         
+        if( $this->logo === null ? $this->logo = new AppearanceEntity\Logo() : $this->logo);
+        
         $this->socialNetwork = $this->doctrine
             ->getRepository(AppearanceEntity\SocialNetwork::class)
             ->findAll();
+        
+        if( $this->socialNetwork === null ? $this->socialNetwork = new AppearanceEntity\SocialNetwork() : $this->socialNetwork);
     }
     
     public function getSite()
