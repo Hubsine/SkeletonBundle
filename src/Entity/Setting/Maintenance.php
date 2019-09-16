@@ -33,10 +33,14 @@ class Maintenance
     /**
      * @ORM\Column(type="boolean")
      * 
-     * @Assert\NotBlank()
      * @Assert\Type(type="boolean")
      */
     private $enable;
+
+    public function __construct()
+    {
+        $this->setEnable(false);
+    }
 
     public function getId(): ?int
     {

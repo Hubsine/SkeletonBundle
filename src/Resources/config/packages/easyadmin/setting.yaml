@@ -10,7 +10,7 @@ easy_admin:
             class: %entity_prefix_namespace%\Setting\Maintenance
             form: 
                 fields:
-                    - enable
+                    - { property: enable, type_options: { required: false } }
                     - { property: 'translations', label: false, type: A2lix\TranslationFormBundle\Form\Type\TranslationsType,
                         type_options: 
                         {
