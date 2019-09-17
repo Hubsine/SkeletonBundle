@@ -18,7 +18,7 @@ class FormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'E-mail', 
-                'required'  => false
+                'required'  => true
             ])
             ->add('firstName', TextType::class, [
                 'label' => 'First name',
