@@ -113,7 +113,7 @@ class MaintenanceSubscriber implements EventSubscriberInterface
     {
         $user = $this->tokenStorage->getToken() === null ? null : $this->tokenStorage->getToken()->getUser();
         
-        if( $user instanceof \FOS\UserBundle\Model\UserInterface && $user->hasRole('ROLE_ADMIN') )
+        if( $user instanceof \FOS\UserBundle\Model\UserInterface && ( $user->hasRole('ROLE_ADMIN') || $user->hasRole('ROLE_SUPER_ADMIN') ) )
         {
             return true;
         }
