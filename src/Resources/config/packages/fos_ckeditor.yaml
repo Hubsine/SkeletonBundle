@@ -4,6 +4,11 @@
 fos_ck_editor:
     input_sync: true
     default_config: advanced_config
+    filebrowsers:
+        - VideoBrowse
+        - VideoUpload
+        - ImageUpload
+        - ImageBrowse
     configs:
         clear_config:
             language: fr
@@ -12,6 +17,8 @@ fos_ck_editor:
         advanced_config:
             language: fr
             toolbar: full
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
 
 twig:
     form_themes:

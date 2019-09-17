@@ -1,0 +1,12 @@
+fm_elfinder:
+    assets_path: /components
+    instances:
+        default:
+            include_assets: true
+            relative_path: true
+            editor: ckeditor
+            connector:
+                roots:
+                    uploads:
+                        driver: LocalFileSystem
+                        path: uploads/editor

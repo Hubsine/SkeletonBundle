@@ -9,6 +9,7 @@ imports:
     - { resource: twig.yaml }
     - { resource: fos_user.yaml }
     - { resource: security.yaml }
+    - { resource: fm_elfinder.yaml }
 parameters:
     locale: fr
 services:
