@@ -3,7 +3,11 @@
 namespace Hubsine\SkeletonBundle\Twig;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface;
 use Hubsine\SkeletonBundle\Entity\Appearance as AppearanceEntity;
+use Hubsine\SkeletonBundle\HubsineSkeletonBundleEvents;
+use Hubsine\SkeletonBundle\Event\SkeletonVariableEvent;
 
 /**
  * SkeletonVariable
@@ -12,14 +16,29 @@ use Hubsine\SkeletonBundle\Entity\Appearance as AppearanceEntity;
  */
 class SkeletonVariable 
 {
+    /**
+     * @var ManagerRegistryInterface
+     */
     private $doctrine;
+    
+    /**
+     * @var TraceableEventDispatcherInterface
+     */
+    private $eventDispatcher;
+    
     private $site;
+    
     private $logo;
+    
     private $socialNetwork;
     
-    public function __construct(ManagerRegistryInterface $doctrine)
+    private $variables;
+
+    public function __construct(ManagerRegistryInterface $doctrine, TraceableEventDispatcherInterface $eventDispatcher)
     {
-        $this->doctrine = $doctrine;
+        $this->doctrine         = $doctrine;
+        $this->eventDispatcher  = $eventDispatcher;
+        $this->variables        = [];
         
         $this->build();
     }
@@ -46,21 +65,55 @@ class SkeletonVariable
             ->getRepository(AppearanceEntity\SocialNetwork::class)
             ->findAll();
         
-        if( $this->socialNetwork === null ? $this->socialNetwork = new AppearanceEntity\SocialNetwork() : $this->socialNetwork);
+        if( $this->socialNetwork === null ? $this->socialNetwork = [] : $this->socialNetwork);
+        
+        $event  = new SkeletonVariableEvent($this);
+        $this->eventDispatcher->dispatch(HubsineSkeletonBundleEvents::HUBSINE_SKELETON_VARIABLE, $event);
     }
     
-    public function getSite()
+    public function getSite() : AppearanceEntity\SiteTranslation
     {
         return $this->site;
     }
     
-    public function getLogo()
+    public function getLogo() : AppearanceEntity\Logo
     {
         return $this->logo;
     }
     
-    public function getSocialNetwork()
+    public function getSocialNetwork() : array
     {
         return $this->socialNetwork;
+    }
+    
+    public function getVariables() : array
+    {
+        return $this->variables;
+    }
+
+    public function addVariable(string $variableName, $variableValue)
+    {
+        if( ! in_array( $variableName, $this->variables, true ) )
+        {
+            $this->variables[$variableName] = $variableValue;
+        }
+    }
+    
+    public function removeVariable(string $variableName)
+    {
+        if( array_key_exists( $variableName, $this->variables ) )
+        {
+            unset($this->variables[$variableName]);
+        }
+    }
+
+    public function __call($name, array $arguments) 
+    {
+        if(array_key_exists($name, $this->variables) )
+        {
+            return $this->variables[$name];
+        }
+        
+        return null;
     }
 }

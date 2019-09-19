@@ -65,4 +65,5 @@ services:
     Hubsine\SkeletonBundle\Twig\SkeletonVariable:
         arguments:
             $doctrine: '@doctrine'
+            $eventDispatcher: '@event_dispatcher'
         
