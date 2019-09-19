@@ -29,7 +29,7 @@ easy_admin:
             form:
                 fields:
                     - username
-                    - { property: password, type: password }
+                    - { property: password }
                     - { property: fromEmail, type: email }
                     - fromName
                     - { property: responseEmail, type: email }
