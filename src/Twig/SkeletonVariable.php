@@ -3,8 +3,7 @@
 namespace Hubsine\SkeletonBundle\Twig;
 
 use Doctrine\Common\Persistence\ManagerRegistry as ManagerRegistryInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Hubsine\SkeletonBundle\Entity\Appearance as AppearanceEntity;
 use Hubsine\SkeletonBundle\HubsineSkeletonBundleEvents;
 use Hubsine\SkeletonBundle\Event\SkeletonVariableEvent;
@@ -22,7 +21,7 @@ class SkeletonVariable
     private $doctrine;
     
     /**
-     * @var TraceableEventDispatcherInterface
+     * @var EventDispatcherInterface
      */
     private $eventDispatcher;
     
@@ -34,7 +33,7 @@ class SkeletonVariable
     
     private $variables;
 
-    public function __construct(ManagerRegistryInterface $doctrine, TraceableEventDispatcherInterface $eventDispatcher)
+    public function __construct(ManagerRegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
     {
         $this->doctrine         = $doctrine;
         $this->eventDispatcher  = $eventDispatcher;
