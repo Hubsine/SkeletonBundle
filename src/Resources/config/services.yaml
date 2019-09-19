@@ -1,0 +1,59 @@
+parameters:
+    locale: fr
+    
+services:
+    
+    ###
+    # Constraint Validator
+    ###
+    Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntryValidator:
+        #resource: '../../../Validator/Constraints/*Validator'
+        tags: ['validator.constraint_validator']
+        arguments:
+            $registry: '@doctrine'
+            
+    ###
+    # Repository
+    ###
+    Hubsine\SkeletonBundle\Repository\:
+        resource: '../../Repository/*'
+        tags: ['doctrine.repository_service']
+        arguments:
+            $registry: '@doctrine'
+        
+    ###
+    # EVENT SUBSCRIBER
+    ###
+    
+    Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber:
+        arguments:
+            $prefix: 'hubsine_skeleton_'
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+            
+    Hubsine\SkeletonBundle\EventSubscriber\MaintenanceSubscriber:
+        arguments:
+            $doctrine: '@doctrine'
+            $authorizationChecker: '@security.authorization_checker'
+            $tokenStorage: '@security.token_storage'
+            $twig: '@twig'
+            $env: '%env(string:APP_ENV)%'
+        tags: ['kernel.event_subscriber']
+            
+      
+    ###
+    # Custom File Namer
+    ###
+    Hubsine\SkeletonBundle\Naming\:
+        resource: '../../Naming/'
+        public: true
+               
+    ###
+    # SiteVariable
+    ###
+    Hubsine\SkeletonBundle\Twig\SkeletonVariable:
+        arguments:
+            $doctrine: '@doctrine'
+            $eventDispatcher: '@event_dispatcher'
+        
+
