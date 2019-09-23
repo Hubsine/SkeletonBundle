@@ -35,7 +35,7 @@ easy_admin:
             class: Hubsine\SkeletonBundle\Entity\Appearance\Logo
             list:
                 fields:
-                    - { property: name, template: 'EasyAdmin/vich_uploader_image.html.twig' }
+                    - { property: name, template: '@HubsineSkeleton/EasyAdmin/vich_uploader_image.html.twig' }
             form:
                 fields:
                     - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }
