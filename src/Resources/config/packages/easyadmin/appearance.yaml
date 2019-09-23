@@ -38,7 +38,7 @@ easy_admin:
                     - { property: name, template: '@HubsineSkeleton/EasyAdmin/vich_uploader_image.html.twig' }
             form:
                 fields:
-                    - { property: file, type: 'vich_image', base_path: '%app.directory.logo%' }
+                    - { property: file, type: 'vich_image', base_path: '%app.directory.logo%', type_options: { allow_delete: false } }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
         SocialNetwork:
