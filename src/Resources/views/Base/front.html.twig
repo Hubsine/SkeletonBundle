@@ -38,7 +38,7 @@
     {% endblock page_title %}
     
     {% block flash %}
-        <div class="{% block flash_tag_class %}container{% endblock flash_tag_class %}">
+        <div class="flashMsgContainer {% block flash_tag_class %}container{% endblock flash_tag_class %}">
             {% include '@HubsineSkeleton/snippet/flash.html.twig' %}
         </div>
     {% endblock flash %}
