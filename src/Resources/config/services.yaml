@@ -52,8 +52,11 @@ services:
     # SiteVariable
     ###
     Hubsine\SkeletonBundle\Twig\SkeletonVariable:
+        public: false
         arguments:
             $doctrine: '@doctrine'
             $eventDispatcher: '@event_dispatcher'
-        
+    hubsine.skeleton.variable:
+        public: true
+        alias: Hubsine\SkeletonBundle\Twig\SkeletonVariable
 
