@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Hubsine\SkeletonBundle\Entity\Setting\MaintenanceTranslation;
+use Hubsine\SkeletonBundle\HubsineSkeletonBundleEvents;
+use Hubsine\SkeletonBundle\Event\SkeletonVariableEvent;
 
 class MaintenanceSubscriber implements EventSubscriberInterface
 {
@@ -60,13 +62,14 @@ class MaintenanceSubscriber implements EventSubscriberInterface
         $this->env                      = $env;
         
         // On récupère la premiere page de maintenance. 
-        $this->maintenancePage          = $this->doctrine->getRepository(MaintenanceTranslation::class)->findOneByEnabled(true);
+        $this->maintenancePage          = $this->doctrine->getRepository(MaintenanceTranslation::class)->findOneBy([]);
     }
     
     public static function getSubscribedEvents()
     {
         return [
             KernelEvents::RESPONSE => 'onKernelRequest',
+            HubsineSkeletonBundleEvents::HUBSINE_SKELETON_VARIABLE  => 'addMaintenance'
         ];
     }
     
@@ -91,6 +94,13 @@ class MaintenanceSubscriber implements EventSubscriberInterface
         }
     }
     
+    public function addMaintenance(SkeletonVariableEvent $event)
+    {
+        $skeletonVariable       = $event->getSkeletonVariable();
+        
+        $skeletonVariable->addVariable('maintenance', $this->maintenancePage);
+    }
+
     /**
      * Check if is maintenance mode 
      * 
