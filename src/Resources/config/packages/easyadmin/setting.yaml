@@ -7,7 +7,7 @@ easy_admin:
             - { entity: Email, label: Email }
     entities:
         Maintenance:
-            class: %entity_prefix_namespace%\Setting\Maintenance
+            class: Hubsine\SkeletonBundle\Entity\Setting\Maintenance
             form: 
                 fields:
                     - { property: enable, type_options: { required: false } }
@@ -25,7 +25,7 @@ easy_admin:
                 new:
                     #form_options: { validation_groups: ['Default', 'create'] }
         Email:
-            class: %entity_prefix_namespace%\Setting\Email
+            class: Hubsine\SkeletonBundle\Entity\Setting\Email
             form:
                 fields:
                     - username
@@ -35,8 +35,8 @@ easy_admin:
                     - { property: responseEmail, type: email }
                     - host
                     - { property: port, type: integer }
-                    - { property: encryption, type: %form_prefix_namespace%\Setting\SettingEncryptionType }
-                    - { property: authMode, type: %form_prefix_namespace%\Setting\SettingAuthType }
+                    - { property: encryption, type: Hubsine\SkeletonBundle\Form\Setting\SettingEncryptionType }
+                    - { property: authMode, type: Hubsine\SkeletonBundle\Form\Setting\SettingAuthType" }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
             

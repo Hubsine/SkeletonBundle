@@ -1,6 +1,6 @@
 a2lix_translation_form:
     locale_provider: default
     locales: [fr] #for now, only french locale is avaible
-    default_locale: %locale%
+    default_locale: '%locale%'
     required_locales: [fr]
     #templating: "@A2lixTranslationForm/bootstrap_4_layout.html.twig"

@@ -1,7 +1,7 @@
 parameters:
     entity_prefix_namespace: 'Hubsine\SkeletonBundle\Entity'
     form_prefix_namespace: 'Hubsine\SkeletonBundle\Form'
-    app.directory.logo: '%kernel.project_dir%/public/uploads/logo'
+    app.directory.logo: "'%kernel.project_dir%'/public/uploads/logo"
 imports:
     - { resource: easyadmin/appearance.yaml }
     - { resource: easyadmin/page.yaml }

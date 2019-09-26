@@ -6,7 +6,7 @@ easy_admin:
             - { entity: Page, label: 'Page' }
     entities:
         Page:
-            class: %entity_prefix_namespace%\Content\Page
+            class: Hubsine\SkeletonBundle\Entity\Content\Page
             disabled_actions: []
             list:
                 fields: 
