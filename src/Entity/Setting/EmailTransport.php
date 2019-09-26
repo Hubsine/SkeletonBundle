@@ -55,14 +55,14 @@ class EmailTransport
     /**
      * @ORM\Column(type="string", length=10)
      * 
-     * @Assert\choice(callback="getEncryptions")
+     * @Assert\Choice(callback="getEncryptions")
      */
     private $encryption;
 
     /**
      * @ORM\Column(type="string", length=50)
      * 
-     * @Assert\choice(callback="getAuthModes")
+     * @Assert\Choice(callback="getAuthModes")
      */
     private $authMode;
     
