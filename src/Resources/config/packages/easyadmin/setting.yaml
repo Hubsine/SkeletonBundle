@@ -32,6 +32,7 @@ easy_admin:
                     - { property: fromEmail, type: email }
                     - fromName
                     - { property: responseEmail, type: email }
+                    - { property: toEmail, type: email }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
         EmailTransport:

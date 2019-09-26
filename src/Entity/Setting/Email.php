@@ -30,6 +30,14 @@ class Email
      * @Assert\Email(checkMX=true, checkHost=true)
      */
     private $fromEmail;
+    
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Email(checkMX=true, checkHost=true)
+     */
+    private $toEmail;
 
     /**
      * @ORM\Column(type="string", length=155)
@@ -60,6 +68,18 @@ class Email
     public function setFromEmail(string $fromEmail): self
     {
         $this->fromEmail = $fromEmail;
+
+        return $this;
+    }
+    
+    public function getToEmail(): ?string
+    {
+        return $this->toEmail;
+    }
+
+    public function setToEmail(string $toEmail): self
+    {
+        $this->toEmail = $toEmail;
 
         return $this;
     }
