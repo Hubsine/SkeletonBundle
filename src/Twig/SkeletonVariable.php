@@ -25,6 +25,11 @@ class SkeletonVariable
      */
     private $eventDispatcher;
     
+    /**
+     * Skeleton variables
+     * 
+     * @var array
+     */
     private $variables;
 
     public function __construct(ManagerRegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
@@ -68,11 +73,23 @@ class SkeletonVariable
         $this->eventDispatcher->dispatch(HubsineSkeletonBundleEvents::HUBSINE_SKELETON_VARIABLE, $event);
     }
     
+    /**
+     * Get skeleton variables 
+     * 
+     * @return array
+     */
     public function getVariables() : array
     {
         return $this->variables;
     }
 
+    /**
+     * Add a variable with their value 
+     * To set variable value, you must remove it, and add again
+     * 
+     * @param string $variableName
+     * @param mixed $variableValue
+     */
     public function addVariable(string $variableName, $variableValue)
     {
         if( ! in_array( $variableName, $this->variables, true ) )
@@ -81,6 +98,14 @@ class SkeletonVariable
         }
     }
     
+    /**
+     * Pour modifier une variable existante, il faut d'abord la supprimer 
+     * Puis l'ajouter à nouveau 
+     * 
+     * @see addVariale
+     * 
+     * @param string $variableName
+     */
     public function removeVariable(string $variableName)
     {
         if( array_key_exists( $variableName, $this->variables ) )
@@ -89,13 +114,18 @@ class SkeletonVariable
         }
     }
 
-    public function __call($name, array $arguments) 
+    public function __get($variableName)
     {
-        if(array_key_exists($name, $this->variables) )
+        if ( isset($this->variables[$variableName]) )
         {
-            return $this->variables[$name];
+            return $this->variables[$variableName];
         }
         
         return null;
+    }
+  
+    public function __isset($variableName)
+    {
+        return isset($this->variables[$variableName]);
     }
 }
