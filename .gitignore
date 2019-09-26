@@ -22,3 +22,8 @@ yarn-error.log
 /templates/
 /trannslation/
 /src/Kernel.php
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
