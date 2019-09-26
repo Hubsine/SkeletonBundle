@@ -25,12 +25,6 @@ class SkeletonVariable
      */
     private $eventDispatcher;
     
-    private $site;
-    
-    private $logo;
-    
-    private $socialNetwork;
-    
     private $variables;
 
     public function __construct(ManagerRegistryInterface $doctrine, EventDispatcherInterface $eventDispatcher)
@@ -44,45 +38,34 @@ class SkeletonVariable
     
     private function build()
     {
-        $this->site = $this->doctrine
+        $site = $this->doctrine
             ->getRepository(AppearanceEntity\SiteTranslation::class)
             ->findOne();
         
-        if( $this->site === null) 
+        if( $site === null) 
         {
-            $this->site = new AppearanceEntity\SiteTranslation();
-            $this->site->setTranslatable(new AppearanceEntity\Site());
+            $site = new AppearanceEntity\SiteTranslation();
+            $site->setTranslatable(new AppearanceEntity\Site());
         }
         
-        $this->logo = $this->doctrine
+        $logo = $this->doctrine
             ->getRepository(AppearanceEntity\Logo::class)
             ->findOneBy([]);
         
-        if( $this->logo === null ? $this->logo = new AppearanceEntity\Logo() : $this->logo);
+        if( $logo === null ? $logo = new AppearanceEntity\Logo() : $logo);
         
-        $this->socialNetwork = $this->doctrine
+        $socialNetwork = $this->doctrine
             ->getRepository(AppearanceEntity\SocialNetwork::class)
             ->findAll();
         
-        if( $this->socialNetwork === null ? $this->socialNetwork = [] : $this->socialNetwork);
+        if( $socialNetwork === null ? $socialNetwork = [] : $socialNetwork);
+        
+        $this->addVariable('site', $site);
+        $this->addVariable('logo', $logo);
+        $this->addVariable('socialNetwork', $socialNetwork);
         
         $event  = new SkeletonVariableEvent($this);
         $this->eventDispatcher->dispatch(HubsineSkeletonBundleEvents::HUBSINE_SKELETON_VARIABLE, $event);
-    }
-    
-    public function getSite() : AppearanceEntity\SiteTranslation
-    {
-        return $this->site;
-    }
-    
-    public function getLogo() : AppearanceEntity\Logo
-    {
-        return $this->logo;
-    }
-    
-    public function getSocialNetwork() : array
-    {
-        return $this->socialNetwork;
     }
     
     public function getVariables() : array
