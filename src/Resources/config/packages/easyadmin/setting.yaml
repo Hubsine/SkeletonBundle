@@ -5,6 +5,7 @@ easy_admin:
             - { label: Setting }
             - { entity: Maintenance, label: Maintenance }
             - { entity: Email, label: Email }
+            - { entity: EmailTransport, label: Email Transport }
     entities:
         Maintenance:
             class: Hubsine\SkeletonBundle\Entity\Setting\Maintenance
@@ -28,15 +29,21 @@ easy_admin:
             class: Hubsine\SkeletonBundle\Entity\Setting\Email
             form:
                 fields:
-                    - username
-                    - { property: password }
                     - { property: fromEmail, type: email }
                     - fromName
                     - { property: responseEmail, type: email }
-                    - host
-                    - { property: port, type: integer }
-                    - { property: encryption, type: Hubsine\SkeletonBundle\Form\Setting\SettingEncryptionType }
-                    - { property: authMode, type: Hubsine\SkeletonBundle\Form\Setting\SettingAuthType" }
             new:
                 form_options: { validation_groups: ['Default', 'create'] }
+        EmailTransport:
+            class: Hubsine\SkeletonBundle\Entity\Setting\EmailTransport
+            form:
+                fields:
+                    - username
+                    - { property: password }
+                    - host
+                    - { property: port, type: integer }
+                    - { property: encryption, type: Hubsine\SkeletonBundle\Form\Setting\EmailEncryptionType }
+                    - { property: authMode, type: Hubsine\SkeletonBundle\Form\Setting\EmailAuthType }
+            new:
+                form_options: { validation_groups: ['Default', 'create'] }        
             
