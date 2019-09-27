@@ -59,4 +59,18 @@ services:
     hubsine.skeleton.variable:
         public: true
         alias: Hubsine\SkeletonBundle\Twig\SkeletonVariable
+        
+    ###
+    # SkeletonMailer
+    ###
+    swiftmailer.mailer.skeleton.transport:
+        class: Swift_SmtpTransport
+    swiftmailer.mailer.skeleton:
+        public: true
+        class: Hubsine\SkeletonBundle\Mailer\SkeletonMailer
+        arguments:
+            $doctrine: '@doctrine'
+            $transport: '@swiftmailer.mailer.skeleton.transport'
+        
+    
 

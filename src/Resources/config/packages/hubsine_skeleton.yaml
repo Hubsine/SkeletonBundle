@@ -9,4 +9,5 @@ imports:
     - { resource: twig.yaml }
     - { resource: fos_user.yaml }
     - { resource: security.yaml }
+    - { resource: swiftmailer.yaml }
     - { resource: fm_elfinder.yaml }
