@@ -2,7 +2,7 @@
 
 namespace Hubsine\SkeletonBundle\Tests\Twig;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Hubsine\SkeletonBundle\Test\AbstractWebTestCase;
 use Hubsine\SkeletonBundle\Entity\Appearance as AppearanceEntity;
 
 /**
@@ -10,7 +10,7 @@ use Hubsine\SkeletonBundle\Entity\Appearance as AppearanceEntity;
  *
  * @author Hubsine <contact@hubsine.com>
  */
-class SkeletonVariableTest extends WebTestCase
+class SkeletonVariableTest extends AbstractWebTestCase
 {
     public function testBuild()
     {
