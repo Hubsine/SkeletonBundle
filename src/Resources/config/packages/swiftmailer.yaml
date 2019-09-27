@@ -1,0 +1,6 @@
+swiftmailer:
+    mailers: 
+        skeleton:
+            spool: { type: 'memory' }
+            logging: true
+            disable_delivery: true
