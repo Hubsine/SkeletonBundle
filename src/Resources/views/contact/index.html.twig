@@ -2,7 +2,22 @@
 
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
+{% block title %}
+    {{ parent() }} - {{ page.title }}
+{% endblock title %}
+
+{% block content_title %}
+    {{ page.title }}
+{% endblock content_title %}
+
+
 {%  block content %}
-    {{ form(form) }}
+
+    <div class="container">
+        {{ page.content|raw }}
+
+        {{ form(form) }}
+    </div>
+
 {%  endblock content %}
 

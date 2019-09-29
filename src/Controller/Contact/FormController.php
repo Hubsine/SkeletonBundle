@@ -6,14 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Hubsine\SkeletonBundle\Entity\Contact\Form;
 use Hubsine\SkeletonBundle\Form\Contact\FormType;
+use Hubsine\SkeletonBundle\Entity\Content\Page;
 
 class FormController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $page = $this->getDoctrine()
+                ->getRepository(Page::class)
+                ->findOneByTag('contact');
+        
         $formEntity = new Form();
         $form       = $this->createForm(FormType::class, $formEntity);
-        
         
         $form->handleRequest($request);
        
@@ -45,7 +49,8 @@ class FormController extends Controller
         }
         
         return $this->render('@HubsineSkeleton/contact/index.html.twig', [
-            'form'  => $form->createView()
+            'form'  => $form->createView(),
+            'page'  => $page
         ]);
     }
 }

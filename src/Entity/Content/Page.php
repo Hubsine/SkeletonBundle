@@ -82,4 +82,8 @@ class Page
         }
     }
     
+    public function __call($method, $arguments)
+    {
+        return \Symfony\Component\PropertyAccess\PropertyAccess::createPropertyAccessor()->getValue($this->translate(), $method);
+    }
 }
