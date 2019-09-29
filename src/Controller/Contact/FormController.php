@@ -23,6 +23,7 @@ class FormController extends Controller
             $message    = $mailer->getMessageWithSenderConfig();
             
             $message->setReplyTo( $formEntity->getEmail(), $formEntity->getFirstName() . ' ' . $formEntity->getLastName() )
+                    ->setSubject($formEntity->getSubject())
                     ->setBody(
                         $this->renderView(
                             '@HubsineSkeleton/contact/message.html.twig',

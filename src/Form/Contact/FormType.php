@@ -28,6 +28,10 @@ class FormType extends AbstractType
                 'label' => 'Last name',
                 'required'  => true
             ])
+            ->add('subject', TextType::class, [
+                'label' => 'Subject',
+                'required'  => true,
+            ])
             ->add('message', TextareaType::class, [
                 'label' => 'Message',
                 'required'  => true

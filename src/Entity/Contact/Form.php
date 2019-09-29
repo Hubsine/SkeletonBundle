@@ -49,6 +49,14 @@ class Form
      */
     private $message;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank()
+     * @Assert\Type(type="string")
+     */
+    private $subject;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,6 +106,18 @@ class Form
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }

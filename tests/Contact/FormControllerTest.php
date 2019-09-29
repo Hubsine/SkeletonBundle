@@ -14,10 +14,11 @@ class FormControllerTest extends AbstractWebTestCase
         ]);
 
         $formData = [
-            'form[email]' => 'test@test.com',
-            'form[firstName]' => 'Foo',
-            'form[lastName]' => 'Bar',
-            'form[message]' => 'My Message'
+            'form[email]'       => 'test@test.com',
+            'form[firstName]'   => 'Foo',
+            'form[lastName]'    => 'Bar',
+            'form[subject]'     => 'Subject Foo',
+            'form[message]'     => 'My Message'
         ];
         
         
