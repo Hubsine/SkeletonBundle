@@ -1,9 +1,10 @@
-<h1>Vous avez reçu un message du formulaire de contact : </h1>
+<h5>Vous avez reçu un message du formulaire de contact : </h5>
 
-Expéditeur : {{ message.firstName }} {{ message.lastName }}
-Email de l'expéditeur : {{ message.email }}
+Expéditeur : {{ message.firstName }} {{ message.lastName }} <br/><br/>
+Email : {{ message.email }}<br/><br/>
+Sujet : {{ message.subject }}<br/><br/>
 
-Message : 
+Message : <br/><br/>
 
 {{ message.message }}
 
