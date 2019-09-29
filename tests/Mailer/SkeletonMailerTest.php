@@ -15,7 +15,7 @@ class SkeletonMailer extends AbstractWebTestCase
 {
     public function testSendEmail()
     {
-        $mailer = static::$container->get('hubsine.skeleton.mailer');
+        $mailer = static::$container->get('swiftmailer.mailer.skeleton');
         
         $this->assertInstanceOf(Email::class, $mailer->getSenderConfig());
         $this->assertInstanceOf(EmailTransport::class, $mailer->getTransportConfig());
