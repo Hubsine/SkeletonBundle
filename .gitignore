@@ -3,6 +3,8 @@
 /.env.local
 /.env.local.php
 /.env.*.local
+/.env*
+/*.lock
 /public/bundles/
 /var/
 /vendor/
@@ -28,3 +30,5 @@ yarn-error.log
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 /src/Migrations/
+/translations/
+/assets/
