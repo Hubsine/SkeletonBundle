@@ -16,7 +16,7 @@ class SkeletonVariableTest extends AbstractWebTestCase
     {
         $kernel             = self::bootKernel();
         $container          = $kernel->getContainer();
-        $skeletonVariable   = $container->get('hubsine.skeleton.variable');
+        $skeletonVariable   = $container->get('hubsine_skeleton.twig.variable');
         
         // Defaults values
         $this->assertInstanceOf(AppearanceEntity\SiteTranslation::class, $site = $skeletonVariable->site);
