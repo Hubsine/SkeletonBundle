@@ -7,11 +7,16 @@ services:
     # Constraint Validator
     ###
     Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntryValidator:
-        #resource: '../../../Validator/Constraints/*Validator'
         tags: ['validator.constraint_validator']
+        public: false
         arguments:
             $registry: '@doctrine'
-            
+          
+       
+    hubsine_skeleton.validator.unique_entry:
+        alias: Hubsine\SkeletonBundle\Validator\Constraints\UniqueEntryValidator
+        public: true
+        
     ###
     # Repository
     ###
@@ -20,7 +25,7 @@ services:
         tags: ['doctrine.repository_service']
         arguments:
             $registry: '@doctrine'
-        
+            
     ###
     # EVENT SUBSCRIBER
     ###
@@ -30,6 +35,7 @@ services:
             $prefix: 'hubsine_skeleton_'
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+        public: false    
             
     Hubsine\SkeletonBundle\EventSubscriber\MaintenanceSubscriber:
         arguments:
@@ -39,15 +45,26 @@ services:
             $twig: '@twig'
             $env: '%env(string:APP_ENV)%'
         tags: ['kernel.event_subscriber']
+        public: false
+        
+    hubsine_skeleton.event_subscriber.table_prefix:
+        alias: Hubsine\SkeletonBundle\EventSubscriber\TablePrefixSubscriber
+        public: true
             
+    hubsine_skeleton.event_subscriber.maintenance:
+        alias: Hubsine\SkeletonBundle\EventSubscriber\MaintenanceSubscriber
+        public: true            
       
     ###
     # Custom File Namer
     ###
-    Hubsine\SkeletonBundle\Naming\:
-        resource: '../../Naming/'
+    Hubsine\SkeletonBundle\Naming\SmartUniqueNamer:
+        public: false
+        
+    hubsine_skeleton.naming.smart_unique_namer:
+        alias: Hubsine\SkeletonBundle\Naming\SmartUniqueNamer
         public: true
-               
+        
     ###
     # SiteVariable
     ###
@@ -56,7 +73,7 @@ services:
         arguments:
             $doctrine: '@doctrine'
             $eventDispatcher: '@event_dispatcher'
-    hubsine.skeleton.variable:
+    hubsine_skeleton.twig.variable:
         public: true
         alias: Hubsine\SkeletonBundle\Twig\SkeletonVariable
         
