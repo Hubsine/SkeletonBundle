@@ -32,3 +32,5 @@ yarn-error.log
 /src/Migrations/
 /translations/
 /assets/
+### < 
+*.sublime*
