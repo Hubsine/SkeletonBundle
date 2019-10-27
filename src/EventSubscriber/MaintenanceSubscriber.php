@@ -3,7 +3,7 @@
 namespace Hubsine\SkeletonBundle\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -12,6 +12,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Hubsine\SkeletonBundle\Entity\Setting\MaintenanceTranslation;
 use Hubsine\SkeletonBundle\HubsineSkeletonBundleEvents;
 use Hubsine\SkeletonBundle\Event\SkeletonVariableEvent;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 
 class MaintenanceSubscriber implements EventSubscriberInterface
 {
@@ -50,7 +51,7 @@ class MaintenanceSubscriber implements EventSubscriberInterface
     /**
      * @var array
      */
-    private $exludeRoutes = ['fos_user_security_login', '_profiler', '_wdt'];
+    private $excludeRoutes = ['fos_user_security_login', '_profiler', '_wdt'];
 
     public function __construct(ManagerRegistry $doctrine, TokenStorageInterface $tokenStorage, AuthorizationCheckerInterface $authorizationChecker,
         \Twig_Environment $twig, $env) 
@@ -73,27 +74,25 @@ class MaintenanceSubscriber implements EventSubscriberInterface
         ];
     }
     
-    public function onKernelRequest(\Symfony\Component\HttpKernel\Event\GetResponseEvent $event)
+    public function onKernelRequest(GetResponseEvent $event)
     {
-        $routeName      = $event->getRequest()->attributes->get('_route');
-        $isMaintenance  = $this->isMaintenanceMode();
-        
-        $firewall = $event->getRequest()->attributes->get('_firewall_context');
-        
-        if( $firewall === 'security.firewall.map.context.main'  )
+        if( $isMaintenance  = $this->isMaintenanceMode() === false || $this->isAdmin() )
         {
-            if( $isMaintenance && ! $this->isAdmin() 
-                && ! in_array($routeName, $this->exludeRoutes) )
-            {
-
-                $response = $event->getResponse() === null ? new Response() : $event->getResponse();
-
-                $view = $this->getMaintenanceView();
-
-                $response->setContent($view);
-                $event->setResponse($response);
-            }
+            return;
         }
+
+        $routeName  = $this->getCurrentRouteName($event);
+        
+        if ( in_array( $routeName, $this->getExcludeRoutes() ) )
+        {
+            return;
+        }        
+        
+        $response   = $event->hasResponse() ? $event->getResponse() : new Response() ;
+        $view       = $this->getMaintenanceView();
+
+        $response->setContent($view);
+        $event->setResponse($response);
     }
     
     public function addMaintenance(SkeletonVariableEvent $event)
@@ -108,7 +107,7 @@ class MaintenanceSubscriber implements EventSubscriberInterface
      * 
      * @return boolean
      */
-    private function isMaintenanceMode()
+    protected function isMaintenanceMode()
     {
         return $this->maintenancePage instanceof MaintenanceTranslation ? 
                 $this->maintenancePage
@@ -121,26 +120,44 @@ class MaintenanceSubscriber implements EventSubscriberInterface
      * 
      * @return boolean
      */
-    private function isAdmin()
+    protected function isAdmin()
     {
+        // Important : la méthode isGranted return une exception AuthenticationCredentialsNotFoundException lors du chargement du prodil
+        // Cela est du au fait qu'il n'existe pas de firewall pour le profil
+        
         $user = $this->tokenStorage->getToken() === null ? null : $this->tokenStorage->getToken()->getUser();
         
-        if( $this->authorizationChecker->isGranted('ROLE_ADMIN'))
+        if( $user !== null && $this->authorizationChecker->isGranted('ROLE_ADMIN') )
         {
             return true;
         }
         
         return false;
     }
+
+    /**
+     * getExcludeRoutes
+     * 
+     * @return array Exclude roure
+     */
+    protected function getExcludeRoutes()
+    {
+        return $this->excludeRoutes;
+    }
     
     /**
      * Render maintenance mode page view
      * @return string
      */
-    private function getMaintenanceView()
+    protected function getMaintenanceView()
     {
         return $this->twig->render('@HubsineSkeleton/Base/maintenance.html.twig', [
             'page'  => $this->maintenancePage
         ]);
+    }
+
+    protected function getCurrentRouteName(GetResponseEvent $event)
+    {
+        return $event->getRequest()->attributes->get('_route');   
     }
 }
